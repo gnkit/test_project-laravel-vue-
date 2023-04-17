@@ -1,7 +1,9 @@
+import AllNotes from './components/AllNotes.vue';
+
 export const routes = [
     {
-        name: 'home',
-        path: '/',
-        component: 'AllNotes'
+        name: 'notes',
+        path: '/notes',
+        component: AllNotes
     }
 ];
