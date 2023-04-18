@@ -8,10 +8,14 @@
             <div class="collapse navbar-collapse">
                 <div class="navbar-nav">
                     <router-link to="/" class="nav-item nav-link">Home</router-link>
-                    <router-link to="/add" class="nav-item nav-link">Add Note</router-link>
+                    <router-link to="/notes" class="nav-item nav-link">All Notes</router-link>
                 </div>
             </div>
         </nav>
+
+        <hr>
+        <router-link to="/add" type="button" class="btn btn-success">+ New Note</router-link>
+
         <br/>
         <router-view></router-view>
     </div>

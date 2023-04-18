@@ -1,15 +1,12 @@
 <template>
     <div>
         <h3 class="text-center">All Notes</h3><br/>
-
-        <table class="table table-bordered">
+        <table class="table table-striped table-hover table-sm table-responsive">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Created At</th>
-                <th>Updated At</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -18,13 +15,11 @@
                 <td>{{ note.id }}</td>
                 <td>{{ note.title }}</td>
                 <td>{{ note.description }}</td>
-                <td>{{ note.created_at }}</td>
-                <td>{{ note.updated_at }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: note.id }}" class="btn btn-primary">Edit
+                        <router-link :to="{name: 'edit', params: { id: note.id }}" class="btn btn-secondary">Edit
                         </router-link>
-                        <button class="btn btn-danger" @click="deletePost(note.id)">Delete</button>
+                        <button class="btn btn-danger" @click="deleteNote(note.id)">Delete</button>
                     </div>
                 </td>
             </tr>
@@ -42,7 +37,7 @@ export default {
     },
     created() {
         this.axios
-            .get('http://localhost:8080/api/notes')
+            .get('/api/notes')
             .then(response => {
                 this.notes = response.data;
             });
@@ -50,7 +45,7 @@ export default {
     methods: {
         deleteNote(id) {
             this.axios
-                .delete(`http://localhost:8080/api/note/delete/${id}`)
+                .delete(`/api/note/delete/${id}`)
                 .then(response => {
                     let i = this.notes.map(item => item.id).indexOf(id);
                     this.notes.splice(i, 1)
