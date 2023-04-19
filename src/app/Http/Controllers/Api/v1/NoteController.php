@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Actions\Note\DeleteNoteAction;
 use App\Actions\Note\GetAllNoteAction;
 use App\Actions\Note\UpsertNoteAction;
 use App\DataTransferObjects\Note\NoteData;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
-use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
@@ -27,43 +27,45 @@ class NoteController extends Controller
      */
     public function store(NoteData $data)
     {
+        sleep(2);
+
         UpsertNoteAction::execute($data);
 
-        return response()->json('The note create successfully.');
+        return response()->json('The note created successfully.');
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * @param Note $id
+     * @param Note $note
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(Note $id)
+    public function show(Note $note)
     {
-        $note = Note::findOrFail($id);
+        $noteData = NoteData::from($note);
 
-        return response()->json($note);
+        return response()->json($noteData);
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param NoteData $data
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, string $id)
+    public function update(NoteData $data)
     {
-        //
+        sleep(2);
+
+        UpsertNoteAction::execute($data);
+
+        return response()->json('The note updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param Note $note
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(string $id)
+    public function destroy(Note $note)
     {
-        //
+        DeleteNoteAction::execute($note);
+
+        return response()->json('The note deleted successfully.');
     }
 }

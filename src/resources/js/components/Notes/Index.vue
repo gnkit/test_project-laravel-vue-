@@ -1,5 +1,7 @@
 <template>
     <div>
+        <router-link :to="{ name: 'notes.create' }" type="button" class="btn btn-success">+ Add New Note</router-link>
+
         <h3 class="text-center">All Notes</h3><br/>
         <table class="table table-striped table-hover table-sm table-responsive">
             <thead>
@@ -17,7 +19,9 @@
                 <td>{{ note.description }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: note.id }}" class="btn btn-secondary">Edit
+                        <router-link :to="{name: 'notes.show', params: { id: note.id }}" class="btn btn-primary">Show
+                        </router-link>
+                        <router-link :to="{name: 'notes.edit', params: { id: note.id }}" class="btn btn-secondary">Edit
                         </router-link>
                         <button class="btn btn-danger" @click="deleteNote(note.id)">Delete</button>
                     </div>
@@ -45,7 +49,7 @@ export default {
     methods: {
         deleteNote(id) {
             this.axios
-                .delete(`/api/note/delete/${id}`)
+                .delete('/api/notes/' + id)
                 .then(response => {
                     let i = this.notes.map(item => item.id).indexOf(id);
                     this.notes.splice(i, 1)

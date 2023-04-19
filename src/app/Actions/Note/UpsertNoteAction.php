@@ -19,7 +19,7 @@ final class UpsertNoteAction
             ],
             [
                 'title' => $data->title,
-                'description' => $data->description,
+                'description' => $data->description ?? '',
             ],
         );
 
