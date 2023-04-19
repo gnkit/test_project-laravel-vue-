@@ -13,6 +13,7 @@
         "vue-router": "^3.6.5"
     },
     "dependencies": {
-        "@vitejs/plugin-vue2": "^2.2.0"
+        "@vitejs/plugin-vue2": "^2.2.0",
+        "vue2-editor": "^2.10.3"
     }
 }

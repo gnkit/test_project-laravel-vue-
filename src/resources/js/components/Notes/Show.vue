@@ -9,7 +9,7 @@
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <p type="text" class="form-control">{{ note.description }}</p>
+                    <p type="text" class="form-control" v-html="note.description"></p>
                 </div>
             </div>
         </div>

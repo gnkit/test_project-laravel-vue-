@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea type="text" class="form-control" v-model="note.description"></textarea>
+                        <vue-editor v-model="note.description" :editor-toolbar="customToolbar"/>
                     </div>
                     <input type="submit" class="btn btn-primary mt-3" :value="creatingNote ? 'Saving...' : 'Save'"
                            :disabled="creatingNote">
@@ -26,12 +26,19 @@
 </template>
 
 <script>
+
+import {VueEditor} from "vue2-editor";
+
 export default {
+    components: {VueEditor},
+
     data() {
         return {
             note: {},
             errors: {},
-            creatingNote: false
+            creatingNote: false,
+            content: '<h1>Some initial content</h1>',
+            customToolbar: [],
         }
     },
     methods: {
@@ -56,3 +63,10 @@ export default {
     }
 }
 </script>
+
+<style>
+span.ql-formats:nth-child(8) {
+    display: none;
+}
+</style>
+
